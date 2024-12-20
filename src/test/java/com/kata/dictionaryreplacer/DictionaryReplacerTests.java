@@ -17,7 +17,7 @@ public class DictionaryReplacerTests {
         Map<String, String> dictionary = new HashMap<>();
         dictionary.put("name", "John");
         // WHEN
-        String result = dictionaryReplacer.replace(input, dictionary);
+        String result = dictionaryReplacer.replace(input, dictionary, "$", "$");
         // THEN
         Assertions.assertThat(result).isEqualTo("Hello John");
     }
@@ -32,7 +32,7 @@ public class DictionaryReplacerTests {
         dictionary.put("name", "John");
         dictionary.put("surname", "Doe");
         // WHEN
-        String result = dictionaryReplacer.replace(input, dictionary);
+        String result = dictionaryReplacer.replace(input, dictionary, "$", "$");
         // THEN
         Assertions.assertThat(result).isEqualTo("Hello John Doe");
     }
@@ -48,7 +48,7 @@ public class DictionaryReplacerTests {
         dictionary.put("surname", "Doe");
         dictionary.put("hobbie", "Football");
         // WHEN
-        String result = dictionaryReplacer.replace(input, dictionary);
+        String result = dictionaryReplacer.replace(input, dictionary, "$", "$");
         // THEN
         Assertions.assertThat(result).isEqualTo("Hello John Doe your hobbie is Football");
     }
@@ -62,7 +62,7 @@ public class DictionaryReplacerTests {
         Map<String, String> dictionary = new HashMap<>();
         dictionary.put("name", "John");
         // WHEN
-        String result = dictionaryReplacer.replace(input, dictionary);
+        String result = dictionaryReplacer.replace(input, dictionary, "$", "$");
         // THEN
         Assertions.assertThat(result).isEqualTo("Hello $surname$");
     }
@@ -75,7 +75,7 @@ public class DictionaryReplacerTests {
         String input = "Hello $surname$";
         Map<String, String> dictionary = new HashMap<>();
         // WHEN
-        String result = dictionaryReplacer.replace(input, dictionary);
+        String result = dictionaryReplacer.replace(input, dictionary, "$", "$");
         // THEN
         Assertions.assertThat(result).isEqualTo("Hello $surname$");
     }
@@ -88,7 +88,7 @@ public class DictionaryReplacerTests {
         String input = "Hello $surname$";
         Map<String, String> dictionary = null;
         // WHEN
-        String result = dictionaryReplacer.replace(input, dictionary);
+        String result = dictionaryReplacer.replace(input, dictionary, "$", "$");
         // THEN
         Assertions.assertThat(result).isEqualTo("Hello $surname$");
     }
@@ -102,7 +102,7 @@ public class DictionaryReplacerTests {
         Map<String, String> dictionary = new HashMap<>();
         dictionary.put("name", "John");
         // WHEN
-        String result = dictionaryReplacer.replace(input, dictionary);
+        String result = dictionaryReplacer.replace(input, dictionary, "<<", ">>");
         // THEN
         Assertions.assertThat(result).isEqualTo("Hello John");
     }
