@@ -37,4 +37,21 @@ public class DictionaryReplacerTests {
         Assertions.assertThat(result).isEqualTo("Hello John Doe");
     }
 
+
+    @Test
+    void should_replace_three_words_when_dictionary_has_three_entries() {
+        // GIVEN
+        DictionaryReplacer dictionaryReplacer = new DictionaryReplacer();
+        String input = "Hello $name$ $surname$ your hobbie is $hobbie$";
+        Map<String, String> dictionary = new HashMap<>();
+        dictionary.put("name", "John");
+        dictionary.put("surname", "Doe");
+        dictionary.put("hobbie", "Football");
+        // WHEN
+        String result = dictionaryReplacer.replace(input, dictionary);
+        // THEN
+        Assertions.assertThat(result).isEqualTo("Hello John Doe your hobbie is Football");
+    }
+
+
 }
