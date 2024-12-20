@@ -54,4 +54,43 @@ public class DictionaryReplacerTests {
     }
 
 
+    @Test
+    void should_not_replace_one_word_when_dictionary_has_one_unmatching_entry() {
+        // GIVEN
+        DictionaryReplacer dictionaryReplacer = new DictionaryReplacer();
+        String input = "Hello $surname$";
+        Map<String, String> dictionary = new HashMap<>();
+        dictionary.put("name", "John");
+        // WHEN
+        String result = dictionaryReplacer.replace(input, dictionary);
+        // THEN
+        Assertions.assertThat(result).isEqualTo("Hello $surname$");
+    }
+
+
+    @Test
+    void should_not_replace_one_word_when_dictionary_has_empty() {
+        // GIVEN
+        DictionaryReplacer dictionaryReplacer = new DictionaryReplacer();
+        String input = "Hello $surname$";
+        Map<String, String> dictionary = new HashMap<>();
+        // WHEN
+        String result = dictionaryReplacer.replace(input, dictionary);
+        // THEN
+        Assertions.assertThat(result).isEqualTo("Hello $surname$");
+    }
+
+
+    @Test
+    void should_not_replace_one_word_when_dictionary_has_null() {
+        // GIVEN
+        DictionaryReplacer dictionaryReplacer = new DictionaryReplacer();
+        String input = "Hello $surname$";
+        Map<String, String> dictionary = null;
+        // WHEN
+        String result = dictionaryReplacer.replace(input, dictionary);
+        // THEN
+        Assertions.assertThat(result).isEqualTo("Hello $surname$");
+    }
+
 }
